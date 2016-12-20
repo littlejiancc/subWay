@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Subway</string>
+    <string name="action_record">购票记录</string>
+</resources>

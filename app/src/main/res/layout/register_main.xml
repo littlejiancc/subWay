@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:stretchColumns="1"
+              android:orientation="vertical"
+              xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/id_toolbar"
+        app:title="Subway"
+        app:titleTextColor="#FFFFFF"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"/>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:padding="15dp"
+        android:background="@color/bg_btn"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/text_login_name"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="用户名: " />
+        <EditText
+            android:id="@+id/edit_name"
+            android:layout_width="200dp"
+            android:layout_below="@id/text_login_name"
+            android:layout_height="30dp"
+            android:background="@drawable/background_login_div"
+            android:inputType="textPersonName"/>
+        <TextView
+            android:id="@+id/text_mobile"
+            android:layout_below="@id/edit_name"
+            android:layout_width="200dp"
+            android:textSize="18sp"
+            android:layout_height="wrap_content"
+            android:text="手机: " />
+        <EditText
+            android:id="@+id/edit_mobile"
+            android:layout_width="200dp"
+            android:layout_below="@id/text_mobile"
+            android:layout_height="30dp"
+            android:background="@drawable/background_login_div"
+            android:inputType="phone"/>
+        <TextView
+            android:id="@+id/text_password"
+            android:layout_below="@id/edit_mobile"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="密码: " />
+        <EditText
+            android:id="@+id/edit_password"
+            android:layout_width="200dp"
+            android:layout_below="@id/text_password"
+            android:layout_height="30dp"
+            android:background="@drawable/background_login_div"
+            android:inputType="textPassword"/>
+        <Button
+            android:id="@+id/btn_login_in"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/edit_password"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button"
+            android:textSize="18sp"
+            android:text="注册"/>
+
+    </RelativeLayout>
+
+</LinearLayout>
