@@ -1,5 +1,6 @@
 package com.example.wangxiaojian.subway;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -24,10 +25,13 @@ public class TicketsRecordActivity extends AppCompatActivity{
     private List<Fragment> fragments = new ArrayList<>();          //fragment集合
     private List<String> titles = new ArrayList<String>();                //tab标题集合
     private Toolbar mToolbar;
+    private  String mName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tickets_record);
+        Intent intent=getIntent();
+        mName=intent.getStringExtra("name");
         mViewPager=(ViewPager)findViewById(R.id.viewpager);
         mTabLayout=(TabLayout)findViewById(R.id.tabs);
         mToolbar=(Toolbar)findViewById(R.id.toolbar);
@@ -38,7 +42,11 @@ public class TicketsRecordActivity extends AppCompatActivity{
             }
         });
         //创建Fragment对象
+
         mNoTicketsFragment=new NoGetTicketsFragment();
+        Bundle bundle=new Bundle();
+        bundle.putString("name",mName);
+        mNoTicketsFragment.setArguments(bundle);
         mHadGetTicketsFragment =new HadGetTicketsFragment();
         fragments.add(mNoTicketsFragment);
         fragments.add(mHadGetTicketsFragment);

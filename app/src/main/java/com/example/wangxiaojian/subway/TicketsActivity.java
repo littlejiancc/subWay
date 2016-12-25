@@ -16,7 +16,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -31,15 +30,17 @@ public class TicketsActivity extends AppCompatActivity
     private RelativeLayout mRelativeLayout;
     private AmountView mAmountView;
     private StationDatabaseHelper mStationDatabaseHelper;
-    private TextView startStation,endStation,price,user;
+    private TextView startStation,endStation,price,user,mobile;
     private NavigationView mNavigationView;
-    DecimalFormat df = new DecimalFormat("0.00");
+    DecimalFormat df = new DecimalFormat("#.00");
     double Pri=0;
     int ticket_num=1;//用来记录地铁票张数
+    String mUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ActivityCollector.addActivity(this);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -49,7 +50,6 @@ public class TicketsActivity extends AppCompatActivity
         toggle.syncState();
 
         mStationDatabaseHelper=new StationDatabaseHelper(this,"Stations.db",null,1);
-        //
         mRelativeLayout=(RelativeLayout)findViewById(R.id.content_main);
         btn_start=(Button)findViewById(R.id.btn_start);
         btn_end=(Button)findViewById(R.id.btn_end) ;
@@ -59,6 +59,13 @@ public class TicketsActivity extends AppCompatActivity
         endStation=(TextView)findViewById(R.id.text_end);
         price=(TextView)findViewById(R.id.text_price);
         mNavigationView=(NavigationView)findViewById(R.id.nav_view);
+        View header = mNavigationView.getHeaderView(0);
+        //View header = mNavigationView.inflateHeaderView(R.layout.nav_header_main);
+        user=(TextView)header.findViewById(R.id.text_user);
+        //得到上个活动传下来的数据
+        Intent intent=getIntent();
+        mUser=intent.getStringExtra("name");
+        user.setText(mUser);
         /*
         * 这里写的是选择起始站
         * */
@@ -88,7 +95,8 @@ public class TicketsActivity extends AppCompatActivity
             public void onClick(View v) {
                 PayDetailFragment payDetailFragment=new PayDetailFragment();
                 payDetailFragment.p=getPrice();
-                payDetailFragment.pr=getPrice()*0.95;
+                payDetailFragment.pr=getPrice();
+                payDetailFragment.name=mUser;
                 payDetailFragment.num=ticket_num;
                 payDetailFragment.ticket_start=startStation.getText().toString();
                 payDetailFragment.ticket_end=endStation.getText().toString();
@@ -179,8 +187,8 @@ public class TicketsActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent intent=new Intent(TicketsActivity.this,TicketsRecordActivity.class);
-            startActivity(intent);
+//            Intent intent=new Intent(TicketsActivity.this,TicketsRecordActivity.class);
+//            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
@@ -191,16 +199,19 @@ public class TicketsActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-            Toast.makeText(TicketsActivity.this,"222",Toast.LENGTH_SHORT).show();
+        if (id == R.id.nav_modif) {
+            Intent intent=new Intent(TicketsActivity.this,ModifPasswordActivity.class);
+            intent.putExtra("name",mUser);
+            startActivity(intent);
         } else if (id == R.id.nav_gallery) {
-
+            Intent intent=new Intent(TicketsActivity.this,TicketsRecordActivity.class);
+            intent.putExtra("name",mUser);
+            startActivity(intent);
         } else if (id == R.id.nav_slideshow) {
             Intent intent=new Intent(TicketsActivity.this,MainActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_manage) {
-
+            ActivityCollector.finishAll();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

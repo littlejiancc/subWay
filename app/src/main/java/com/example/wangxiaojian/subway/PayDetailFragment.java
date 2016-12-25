@@ -6,7 +6,6 @@ import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.view.Gravity;
 import android.view.View;
@@ -19,8 +18,11 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DecimalFormat;
+
+import static com.example.wangxiaojian.subway.R.layout.pay_detail;
 
 /**
  * Created by Wangxiaojian on 2016/12/12.
@@ -35,6 +37,7 @@ public class PayDetailFragment extends DialogFragment {
     private StationDatabaseHelper mStationDatabaseHelper;
     public double p=0,pr=0;
     public int num=1;
+    public String name;
     public String ticket_start,ticket_end,ticet_time,ticket_price,ticket_status;
     DecimalFormat df = new DecimalFormat("0.00");
     @NonNull
@@ -42,7 +45,7 @@ public class PayDetailFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // 使用不带Theme的构造器, 获得的dialog边框距离屏幕仍有几毫米的缝隙。
         Dialog dialog = new Dialog(getActivity(), R.style.BottomDialog);
-        dialog.setContentView(R.layout.pay_detail);
+        dialog.setContentView(pay_detail);
         dialog.setCanceledOnTouchOutside(true); // 外部点击取消
         // 设置宽度为屏宽, 靠近屏幕底部。
         final Window window = dialog.getWindow();
@@ -82,10 +85,10 @@ public class PayDetailFragment extends DialogFragment {
         btnPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(re_root,"支付成功",Snackbar.LENGTH_LONG).show();
                 SQLiteDatabase db = mStationDatabaseHelper.getWritableDatabase();
                 ContentValues values = new ContentValues();
                 // 开始组装数据
+                values.put("owner_id",name);
                 values.put("start",ticket_start);
                 values.put("end",ticket_end);
                 values.put("status",ticket_status);
@@ -94,6 +97,9 @@ public class PayDetailFragment extends DialogFragment {
                 values.put("time",ticet_time);
                 db.insert("ticket", null, values); // 插入数据
                 values.clear();
+                Toast.makeText(getActivity(),"购票成功",Toast.LENGTH_LONG).show();
+//                Intent intent=new Intent(getActivity(),TicketsRecordActivity.class);
+//                 startActivity(intent);
             }
         });
         return dialog;

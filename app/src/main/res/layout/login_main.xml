@@ -3,12 +3,11 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:stretchColumns="1"
-              android:background="@mipmap/ic_bac"
               android:orientation="vertical"
              xmlns:app="http://schemas.android.com/apk/res-auto">
     <android.support.v7.widget.Toolbar
         android:id="@+id/id_toolbar"
-        app:title="杭州地铁"
+        app:title="杭州地铁管家"
         app:titleTextColor="#FFFFFF"
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
@@ -17,56 +16,77 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_margin="20dp"
         android:padding="15dp"
         android:layout_height="wrap_content">
-        <TextView
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:background="@mipmap/welcome"/>
+        <ImageView
+            android:id="@+id/imag_name"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@id/image"
+            android:layout_marginTop="30dp"
+            android:src="@mipmap/user2"/>
+        <android.support.design.widget.TextInputLayout
             android:id="@+id/text_login_name"
-            android:layout_width="200dp"
+            android:layout_below="@id/image"
+            android:layout_toRightOf="@id/imag_name"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="用户名: " />
-        <EditText
-            android:id="@+id/edit_name"
-            android:layout_width="200dp"
+            app:hintTextAppearance="@style/FloatingStyle">
+            <EditText
+                android:id="@+id/edit_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="用户名" />
+        </android.support.design.widget.TextInputLayout>
+        <ImageView
+            android:id="@+id/imag_password"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_below="@id/text_login_name"
-            android:layout_height="30dp"
-            android:background="@drawable/background_login_div"
-            android:inputType="textPersonName"/>
-        <TextView
+            android:layout_marginTop="30dp"
+            android:src="@mipmap/password"/>
+        <android.support.design.widget.TextInputLayout
             android:id="@+id/text_password"
-            android:layout_below="@id/edit_name"
-            android:layout_width="200dp"
+            android:layout_below="@id/text_login_name"
+            android:layout_toRightOf="@id/imag_password"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="密码: " />
+            app:hintTextAppearance="@style/FloatingStyle">
         <EditText
             android:id="@+id/edit_password"
-            android:layout_width="200dp"
-            android:layout_below="@id/text_password"
-            android:layout_height="30dp"
-            android:background="@drawable/background_login_div"
-            android:inputType="textPassword"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="密码" />
+        </android.support.design.widget.TextInputLayout>
         <Button
             android:id="@+id/btn_login_in"
-            android:layout_width="200dp"
-            android:layout_height="30dp"
-            android:layout_below="@id/edit_password"
-            android:layout_marginTop="10dp"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/text_password"
+            android:layout_marginTop="30dp"
             android:background="@drawable/button"
             android:textSize="18sp"
             android:text="登陆"/>
-        <TextView
+        <Button
             android:id="@+id/link_signup"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:layout_marginTop="10dp"
-            android:layout_below="@id/btn_login_in"
-            android:text="No account yet? Create one"
-            android:gravity="center"
-            android:textSize="16dip"/>
-
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/text_password"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/button"
+            android:textSize="18sp"
+            android:text="注册"/>
     </RelativeLayout>
 
 </LinearLayout>

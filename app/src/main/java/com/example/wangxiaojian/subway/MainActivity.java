@@ -8,23 +8,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private Button btn_login_in;
-    private TextView mLink_signup;
+    private Button mLink_signup;
     private EditText name,password;
-    private UserDatabaseHelper dbHelper;
+    private StationDatabaseHelper dbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_main);
+        ActivityCollector.addActivity(this);
         btn_login_in=(Button)findViewById(R.id.btn_login_in);
-        mLink_signup=(TextView)findViewById(R.id.link_signup);
+        mLink_signup=(Button)findViewById(R.id.link_signup);
         name=(EditText)findViewById(R.id.edit_name);
         password=(EditText)findViewById(R.id.edit_password);
-        dbHelper=new UserDatabaseHelper(this,"Users.db",null,1);
+        dbHelper=new StationDatabaseHelper(this,"Stations.db",null,1);
         btn_login_in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
                         if(mName.equals(name)&&mPassword.equals(password)){
                             count++;
                             Intent intent =new Intent(MainActivity.this,TicketsActivity.class);
+                            intent.putExtra("name",name);
                             startActivity(intent);
                         }
                     } while (cursor.moveToNext());

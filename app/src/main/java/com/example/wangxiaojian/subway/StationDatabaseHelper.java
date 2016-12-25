@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class StationDatabaseHelper extends SQLiteOpenHelper {
+
     public static final String CREATE_CONTACT = "create table station ("
             + "id integer primary key autoincrement, "
             + "name text, "
@@ -20,12 +21,19 @@ public class StationDatabaseHelper extends SQLiteOpenHelper {
             + "price double)";
     public static final String CREATE_CONTACT3 = "create table ticket ("
             + "id integer primary key autoincrement, "
+            + "owner_id integer, "
             + "start text, "
             + "end text, "
             + "price double, "
             + "time text, "
             + "status text, "
-            + "num int)";
+            + "num int, "
+            + "foreign key (owner_id) references contacts(id))";
+    public static final String CREATE_CONTACT4= "create table contacts ("
+            + "id integer primary key autoincrement, "
+            + "name text, "
+            + "mobile text, "
+            + "password text)";
     private Context mContext;
     String[] stations1={"湘湖","滨康路","西兴","滨河路","江陵路","近江","婺江路","城站","定安路","龙翔桥","凤起路","武林广场"
             ,"西湖文化广场","打铁关","闸弄口","火车东站","彭埠","七堡","九合路","九堡","客运中心","下沙西","乔司南","金沙湖"
@@ -42,6 +50,7 @@ public class StationDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_CONTACT);
         db.execSQL(CREATE_CONTACT2);
         db.execSQL(CREATE_CONTACT3);
+        db.execSQL(CREATE_CONTACT4);
         ContentValues values = new ContentValues();
         // 开始组装数据
         for(int i =0;i<stations1.length;i++) {

@@ -94,7 +94,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
             android:layout_below="@id/amount_view"
-            android:textColor="#FF9747"
+            android:textColor="#FF9F40"
             android:textSize="20sp"
             android:text="0.00"/>
         <ImageView
@@ -105,7 +105,7 @@
             android:layout_toLeftOf="@id/text_price"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="180dp"
-            android:background="@mipmap/yen"/>
+            android:background="@mipmap/money"/>
     </RelativeLayout>
     <Button
         android:id="@+id/confirm_pay"

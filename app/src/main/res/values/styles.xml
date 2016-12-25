@@ -41,4 +41,10 @@
         <item name="android:windowIsFloating">true</item>
         <item name="android:backgroundDimEnabled">true</item>
     </style>
+    <style name="FloatingStyle" parent="@android:style/TextAppearance">
+        <!-- 字体颜色 -->
+        <item name="android:textColor">#AA00FF</item>
+        <!-- 字体大小 -->
+        <item name="android:textSize">20sp</item>
+    </style>
 </resources>

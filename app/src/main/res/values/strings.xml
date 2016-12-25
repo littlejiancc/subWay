@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Subway</string>
+    <string name="app_name">杭州地铁管家</string>
     <string name="action_record">购票记录</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

@@ -12,27 +12,24 @@
     android:paddingTop="16dp"
     android:background="@mipmap/subway"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="16dp"
-        app:srcCompat="@android:drawable/alert_light_frame"/>
-
-    <TextView
-        android:id="@+id/text_user"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/cardview_dark_background"
-        android:text="王小建"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/cardview_dark_background"
-        android:text="17816869670"/>
-
+    <RelativeLayout
+        android:layout_width="100dp"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:paddingTop="16dp"
+            android:src="@mipmap/user2"/>
+        <TextView
+            android:id="@+id/text_user"
+            android:layout_toRightOf="@id/imageView"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="20sp"
+            android:text="王小建"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+    </RelativeLayout>
 </LinearLayout>

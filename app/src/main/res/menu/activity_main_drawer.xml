@@ -3,20 +3,20 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="我的钱包"/>
+            android:id="@+id/nav_modif"
+            android:icon="@mipmap/wallet"
+            android:title="修改密码"/>
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@mipmap/register"
             android:title="购票记录"/>
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@mipmap/user"
             android:title="切换用户"/>
         <item
             android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@mipmap/exit"
             android:title="退出"/>
     </group>
 

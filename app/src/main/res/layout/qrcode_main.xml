@@ -18,11 +18,11 @@
         android:layout_height="160dp">
         <ImageView
             android:id="@+id/image_v"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="18dp"
             android:layout_marginLeft="10dp"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@mipmap/ic_launcher"/>
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:background="@mipmap/sub"/>
         <TextView
             android:id="@+id/tv_s"
             android:layout_width="wrap_content"
