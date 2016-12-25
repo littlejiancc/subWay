@@ -4,6 +4,10 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -12,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -20,12 +25,14 @@ import java.text.SimpleDateFormat;
  * Created by Wangxiaojian on 2016/12/9.
  */
 
-public class TicketsActivity extends AppCompatActivity {
+public class TicketsActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener{
     private Button btn_start,btn_end,btn_confirmPay;
     private RelativeLayout mRelativeLayout;
     private AmountView mAmountView;
     private StationDatabaseHelper mStationDatabaseHelper;
-    private TextView startStation,endStation,price;
+    private TextView startStation,endStation,price,user;
+    private NavigationView mNavigationView;
     DecimalFormat df = new DecimalFormat("0.00");
     double Pri=0;
     int ticket_num=1;//用来记录地铁票张数
@@ -35,14 +42,11 @@ public class TicketsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.mipmap.ic_keyboard_backspace_white_24dp);
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
 
         mStationDatabaseHelper=new StationDatabaseHelper(this,"Stations.db",null,1);
         //
@@ -50,9 +54,11 @@ public class TicketsActivity extends AppCompatActivity {
         btn_start=(Button)findViewById(R.id.btn_start);
         btn_end=(Button)findViewById(R.id.btn_end) ;
         btn_confirmPay=(Button)findViewById(R.id.confirm_pay);
+        btn_confirmPay.setEnabled(false);
         startStation=(TextView)findViewById(R.id.text_start);
         endStation=(TextView)findViewById(R.id.text_end);
         price=(TextView)findViewById(R.id.text_price);
+        mNavigationView=(NavigationView)findViewById(R.id.nav_view);
         /*
         * 这里写的是选择起始站
         * */
@@ -87,6 +93,7 @@ public class TicketsActivity extends AppCompatActivity {
                 payDetailFragment.ticket_start=startStation.getText().toString();
                 payDetailFragment.ticket_end=endStation.getText().toString();
                 payDetailFragment.ticket_status="未取票";
+                //获取当前的时间
                 SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 String date = sDateFormat.format(new java.util.Date());
                 payDetailFragment.ticet_time=date;
@@ -107,6 +114,8 @@ public class TicketsActivity extends AppCompatActivity {
                 price.setText(String.valueOf(df.format(p)));
             }
         });
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
     public double getPrice(){
         return Double.valueOf(price.getText().toString());
@@ -143,6 +152,7 @@ public class TicketsActivity extends AppCompatActivity {
                 int price = cursor.getInt(cursor.
                         getColumnIndex("price"));
                 if(startStation.getText().equals(start)&&endStation.getText().equals(end)){
+                   btn_confirmPay.setEnabled(true);
                     flag=true;
                     Pri=price;
                 }
@@ -174,5 +184,26 @@ public class TicketsActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    //抽屉菜单
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_camera) {
+            // Handle the camera action
+            Toast.makeText(TicketsActivity.this,"222",Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_gallery) {
+
+        } else if (id == R.id.nav_slideshow) {
+            Intent intent=new Intent(TicketsActivity.this,MainActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_manage) {
+
+        }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

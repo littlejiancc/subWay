@@ -75,7 +75,7 @@ public class StationDatabaseHelper extends SQLiteOpenHelper {
         }
         values.put("start","西湖");
         values.put("end","仓前");
-        values.put("status","未取票");
+        values.put("status","已取票");
         values.put("num",2);
         values.put("price",2);
         values.put("time","2016-2-2");

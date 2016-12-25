@@ -8,7 +8,7 @@
              xmlns:app="http://schemas.android.com/apk/res-auto">
     <android.support.v7.widget.Toolbar
         android:id="@+id/id_toolbar"
-        app:title="Subway"
+        app:title="杭州地铁"
         app:titleTextColor="#FFFFFF"
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"

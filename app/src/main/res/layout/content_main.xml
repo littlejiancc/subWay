@@ -110,6 +110,7 @@
     <Button
         android:id="@+id/confirm_pay"
         android:layout_below="@id/layout_station"
+        android:layout_centerHorizontal="true"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"

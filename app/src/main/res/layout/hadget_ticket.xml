@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:orientation="vertical"
+              android:layout_height="match_parent">
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/list_view">
+        </ListView>
+        <RelativeLayout
+            android:id="@+id/empt_view"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/image_view"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="@mipmap/subway"/>
+                <TextView
+                    android:id="@+id/text_view"
+                    android:layout_below="@id/image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:textColor="@color/text_color_grey"
+                    android:text="没有完成的票单!"/>
+        </RelativeLayout>
+</RelativeLayout>

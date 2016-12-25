@@ -17,7 +17,7 @@ import java.util.List;
 
 public class TicketsRecordActivity extends AppCompatActivity{
     private NoGetTicketsFragment mNoTicketsFragment;
-    private CompleteFragment mCompleteFragment;
+    private HadGetTicketsFragment mHadGetTicketsFragment;
     private ViewPagerAdapter mViewPagerAdapter;
     private ViewPager mViewPager;
     private TabLayout mTabLayout;
@@ -39,9 +39,9 @@ public class TicketsRecordActivity extends AppCompatActivity{
         });
         //创建Fragment对象
         mNoTicketsFragment=new NoGetTicketsFragment();
-        mCompleteFragment=new CompleteFragment();
+        mHadGetTicketsFragment =new HadGetTicketsFragment();
         fragments.add(mNoTicketsFragment);
-        fragments.add(mCompleteFragment);
+        fragments.add(mHadGetTicketsFragment);
         titles.add("未取票");
         titles.add("已取票");
         mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), fragments, titles);
